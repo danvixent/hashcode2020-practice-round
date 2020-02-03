@@ -13,6 +13,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	}
 	// Read the `input` directory so that we don't have to
 	// modify the code whenever we want to test other inputs
+	str := time.Now()
 	filepath.Walk("inputs", func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			file, err := os.Open(path)
@@ -48,6 +50,8 @@ func main() {
 		}
 		return nil
 	})
+	stp := time.Since(str).Seconds()
+	fmt.Println("Time:", stp)
 }
 
 // extract returns the integer equivalents of numbers in the slice parameter...translated into a slice of ints
